@@ -15,7 +15,7 @@
 <a name="0b884e4f"></a>
 ## 界面预览
 
-![](https://github.com/WideSu/lectureNoteAssistant/screenshot/lectureNoteAssistant.gif)
+![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif)
 
 ## 应用场景
 
@@ -48,17 +48,15 @@
 - 项目使用了 [ffmpeg](http://ffmpeg.org/) 依赖，如果电脑没有配置过ffmpeg，需要在ffmpeg官网下了一个full-build的版本，解压后将其中bin目录加入系统变量Path中
 
 ## FAQ
-##### 1.为什么Linux和Mac不能用？
-因为`VideoSrt`的GUI是使用[lxn/walk](https://github.com/lxn/walk)开发的，仅支持Windows的GUI，如果您想在Linux上使用，可以体验[CLI版本](https://github.com/wxbool/video-srt)
 
-##### 2.使用此软件会产生费用吗？
+##### 1.使用此软件会产生费用吗？
 如果您适量使用本软件（各个API的免费使用额度可以自行查询，如阿里云语音识别免费版每天限量2h），将不会产生费用。
 如果您大量使用，建议根据自己的情况购买各个平台的资源包，以满足需求。
 
-##### 3.难受，为什么我一直报错？
+##### 2.难受，为什么我一直报错？
 报错的原因有很多，未配置ffmpeg依赖、软件运行命令错误、阿里云、腾讯云等账户权限问题都可能会导致软件显示错误。如果您遇到麻烦，可以加QQ 1197749338与我交流。
 
-## 如何运行？
+##### 3.如何运行？
 1.在Go官网下载安装包
 2.在ffmpeg官网下载full-build的安装包，解压后将其中bin文件加入系统变量Path中
 3.在VS Code中配置Go开发环境（Go）
