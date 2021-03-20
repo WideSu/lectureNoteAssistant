@@ -12,8 +12,6 @@
 - 百度翻译开放平台 [翻译API](http://api.fanyi.baidu.com/api/trans/product/index) 
 - 腾讯云 [翻译API](https://cloud.tencent.com/product/tmt) 
 
-软件帮助文档/使用教程看这个：[https://www.yuque.com/viggo-t7cdi/videosrt](https://www.yuque.com/viggo-t7cdi/videosrt)
-
 <a name="0b884e4f"></a>
 ## 界面预览
 
