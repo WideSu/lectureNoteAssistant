@@ -57,17 +57,23 @@
 报错的原因有很多，未配置ffmpeg依赖、软件运行命令错误、阿里云、腾讯云等账户权限问题都可能会导致软件显示错误。如果您遇到麻烦，可以加QQ 1197749338与我交流。
 
 ##### 3.如何运行？
-1.在Go官网下载安装包<br />
-2.在ffmpeg官网下载full-build的安装包，解压后将其中bin文件加入系统变量Path中<br />
-3.在VS Code中配置Go开发环境（Go扩展 以及launch.json）<br />
-4.导入本项目<br />
-5.在终端输入go build -ldflags="-H windowsgui"编译项目产生可执行文件<br />
-6.运行可执行文件<br />
-7.配置阿里云语音接口<br />
-8.配置腾讯、百度翻译接口<br />
-9.配置阿里云OSS存储接口<br />
+1. 在Go官网下载安装包<br />
+2. 在ffmpeg官网下载full-build的安装包，解压后将其中bin文件加入系统变量Path中<br />
+3. 在VS Code中配置Go开发环境（Go扩展 以及launch.json）<br />
+4. 导入本项目<br />
+5. 在终端输入go build -ldflags="-H windowsgui"编译项目产生可执行文件<br />
+6. 运行可执行文件<br />
+7. 配置阿里云语音接口<br />
+8. 配置腾讯、百度翻译接口<br />
+9. 配置阿里云OSS存储接口<br />
 
 <a name="f3dc992e"></a>
+
+## 测试视频来源：LED演讲视频
+链接：https://pan.baidu.com/s/16gfn1lUSNiNWKCEP1uUlKQ 
+提取码：fjq4 
+复制这段内容后打开百度网盘手机App，操作更方便哦--来自百度网盘超级会员V3的分享
+
 ## 交流&联系
 
 - QQ：1197749338
