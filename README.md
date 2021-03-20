@@ -15,7 +15,7 @@
 <a name="0b884e4f"></a>
 ## 界面预览
 
-![](https://pic.downk.cc/item/5f28c7ea14195aa594369a59.gif)
+![](https://github.com/WideSu/lectureNoteAssistant/tree/main/screenshot/lectureNoteAssistant.gif)
 
 ## 应用场景
 
