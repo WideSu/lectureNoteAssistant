@@ -69,8 +69,8 @@
 9. 配置阿里云OSS存储接口[OSS对象存储](https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.13.e9392c4aGfj5vj&aly_as=K11FcpO8)<br />
 
 ##### 4.如何提升语音识别准确度？
-1. 可在阿里云智能语音交互平台上上传对应的训练集，训练自定义模型<br />
-2. 可在阿里云智能语音交互平台上添加专业词汇热词，改善软件对领域专业词汇的识别准确度<br />
+1. 可在阿里云智能语音交互平台上上传对应的训练集，训练自定义模型[阿里云智能语音交互自定义模型官方Doc](https://help.aliyun.com/document_detail/72216.html?spm=a2c4g.11186623.6.565.3d0569386dk3T3)<br />
+2. 可在阿里云智能语音交互平台上添加专业词汇热词，改善软件对领域专业词汇的识别准确度[阿里云智能语音交互管理热词官方Doc](https://help.aliyun.com/document_detail/72215.html?spm=a2c4g.11186623.6.564.40071037R34ic5)<br />
 3. 在软件中设置语气词、替换规则<br />
 
 <a name="f3dc992e"></a>
