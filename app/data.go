@@ -10,8 +10,7 @@ import (
 const (
 	OUTPUT_SRT     = 1 //字幕SRT文件
 	OUTPUT_STRING  = 2 //普通文本
-	OUTPUT_LRC     = 3 //LRC文本
-	OUTPUT_SUMMARY = 4 //摘要文本
+	OUTPUT_SUMMARY = 3 //摘要文本
 )
 
 //输出文件编码

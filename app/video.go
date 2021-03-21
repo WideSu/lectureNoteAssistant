@@ -249,9 +249,6 @@ func (app *VideoSrt) Run(video string) {
 	if app.OutputType.SRT {
 		AliyunAudioResultMakeSubtitleFile(app, video, OUTPUT_SRT, AudioResult, IntelligentBlockResult)
 	}
-	if app.OutputType.LRC {
-		AliyunAudioResultMakeSubtitleFile(app, video, OUTPUT_LRC, AudioResult, IntelligentBlockResult)
-	}
 	if app.OutputType.TXT {
 		AliyunAudioResultMakeSubtitleFile(app, video, OUTPUT_STRING, AudioResult, IntelligentBlockResult)
 	}
@@ -702,7 +699,7 @@ func AliyunAudioResultMakeSubtitleFile(app *VideoSrt, video string, outputType i
 
 	//开启智能分段
 	if !app.CloseIntelligentBlockSwitch {
-		if outputType == OUTPUT_SRT || outputType == OUTPUT_LRC {
+		if outputType == OUTPUT_SRT {
 			thisAudioResult = IntelligentBlockResult
 		} else if outputType == OUTPUT_STRING {
 			thisAudioResult = AudioResult
@@ -737,8 +734,6 @@ func AliyunAudioResultMakeSubtitleFile(app *VideoSrt, video string, outputType i
 			thisfile += ".txt"
 		} else if outputType == OUTPUT_SUMMARY {
 			thisfile += "_摘要.txt"
-		} else if outputType == OUTPUT_LRC {
-			thisfile += ".lrc"
 		}
 
 		//创建文件
@@ -753,10 +748,6 @@ func AliyunAudioResultMakeSubtitleFile(app *VideoSrt, video string, outputType i
 			if _, e := file.Write([]byte{0xEF, 0xBB, 0xBF}); e != nil {
 				panic(e)
 			}
-		}
-		//歌词头
-		if outputType == OUTPUT_LRC {
-			_, _ = file.WriteString("[ar:]\r\n[ti:]\r\n[al:]\r\n[by:]\r\n")
 		}
 
 		//主字幕
@@ -774,8 +765,8 @@ func AliyunAudioResultMakeSubtitleFile(app *VideoSrt, video string, outputType i
 				continue //跳过空行
 			}
 
-			//字幕、歌词文件处理
-			if outputType == OUTPUT_SRT || outputType == OUTPUT_LRC {
+			//字幕文件处理
+			if outputType == OUTPUT_SRT {
 				//拼接
 				if outputType == OUTPUT_SRT {
 					if app.TranslateCfg.TranslateSwitch {
@@ -786,12 +777,6 @@ func AliyunAudioResultMakeSubtitleFile(app *VideoSrt, video string, outputType i
 						}
 					} else {
 						linestr = MakeSubtitleText(index, data.BeginTime, data.EndTime, data.Text, "", false, true)
-					}
-				} else if outputType == OUTPUT_LRC {
-					if app.TranslateCfg.TranslateSwitch {
-						linestr = MakeMusicLrcText(index, data.BeginTime, data.EndTime, data.TranslateText)
-					} else {
-						linestr = MakeMusicLrcText(index, data.BeginTime, data.EndTime, data.Text)
 					}
 				}
 

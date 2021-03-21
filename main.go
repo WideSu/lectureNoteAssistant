@@ -514,19 +514,6 @@ func main() {
 								},
 							},
 							CheckBox{
-								AssignTo: &outputLrcChecked,
-								Text:     "LRC文件",
-								Checked:  Bind("OutputLrc"),
-								OnClicked: func() {
-									_ = operateDb.Submit()
-
-									operateFrom.OutputType.LRC = operateFrom.OutputLrc
-									appSetings.OutputType = operateFrom.OutputType
-									//更新缓存
-									Setings.SetCacheAppSetingsData(appSetings)
-								},
-							},
-							CheckBox{
 								AssignTo: &outputTxtChecked,
 								Text:     "普通文本",
 								Checked:  Bind("OutputTxt"),

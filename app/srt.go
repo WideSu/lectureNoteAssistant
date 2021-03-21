@@ -166,9 +166,6 @@ func (app *SrtTranslateApp) Run(srtfile string) {
 	if app.OutputType.SRT {
 		app.SrtOutputFile(srtfile, srtRows, OUTPUT_SRT)
 	}
-	if app.OutputType.LRC {
-		app.SrtOutputFile(srtfile, srtRows, OUTPUT_LRC)
-	}
 	if app.OutputType.TXT {
 		app.SrtOutputFile(srtfile, srtRows, OUTPUT_STRING)
 	}
@@ -294,8 +291,6 @@ func (app *SrtTranslateApp) SrtOutputFile(file string, srtRows []*SrtRows, outpu
 		thisfile += ".srt"
 	} else if outputType == OUTPUT_STRING {
 		thisfile += ".txt"
-	} else if outputType == OUTPUT_LRC {
-		thisfile += ".lrc"
 	}
 	//创建文件
 	fd, e := os.Create(thisfile)
@@ -308,10 +303,6 @@ func (app *SrtTranslateApp) SrtOutputFile(file string, srtRows []*SrtRows, outpu
 		if _, e := fd.Write([]byte{0xEF, 0xBB, 0xBF}); e != nil {
 			panic(e)
 		}
-	}
-	//歌词头
-	if outputType == OUTPUT_LRC {
-		_, _ = fd.WriteString("[ar:]\r\n[ti:]\r\n[al:]\r\n[by:]\r\n")
 	}
 
 	//主字幕
@@ -329,8 +320,8 @@ func (app *SrtTranslateApp) SrtOutputFile(file string, srtRows []*SrtRows, outpu
 			continue //跳过空行
 		}
 
-		//字幕、歌词文件处理
-		if outputType == OUTPUT_SRT || outputType == OUTPUT_LRC {
+		//字幕文件处理
+		if outputType == OUTPUT_SRT {
 			//拼接
 			if outputType == OUTPUT_SRT {
 				if app.TranslateCfg.TranslateSwitch {
@@ -341,12 +332,6 @@ func (app *SrtTranslateApp) SrtOutputFile(file string, srtRows []*SrtRows, outpu
 					}
 				} else {
 					linestr = MakeSubtitleText(index, data.TimeStartMilliSecond, data.TimeEndMilliSecond, data.Text, "", false, true)
-				}
-			} else if outputType == OUTPUT_LRC {
-				if app.TranslateCfg.TranslateSwitch {
-					linestr = MakeMusicLrcText(index, data.TimeStartMilliSecond, data.TimeEndMilliSecond, data.TranslateText)
-				} else {
-					linestr = MakeMusicLrcText(index, data.TimeStartMilliSecond, data.TimeEndMilliSecond, data.Text)
 				}
 			}
 
