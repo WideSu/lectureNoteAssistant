@@ -11,7 +11,7 @@
 
 ## 软件界面
 
-![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant_1.gif)
+![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/LectureNoteAssistant_1.gif)
 
 ## 应用场景
 
