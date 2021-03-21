@@ -7,7 +7,7 @@
 <a name="0b884e4f"></a>
 
 ## 软件架构
-
+![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/softwareArchitect.png)
 
 ## 软件界面
 
