@@ -60,7 +60,7 @@
 ##### 3.如何运行？
 1. 在Go官网下载安装包，参考[Go安装教程](https://golang.org/doc/install)<br />
 2. 在ffmpeg官网下载对应操作系统的full-build的安装包，解压后将其中bin文件加入系统变量Path中[ffmpeg下载地址](https://ffmpeg.org/download.html)<br />
-3. 在VS Code中配置Go开发环境（Go扩展 以及launch.json）<br />
+3. 在VS Code中配置Go开发环境（Go扩展 以及launch.json）[VS code配置Go开发环境教程](https://www.liwenzhou.com/posts/Go/00_go_in_vscode/)<br />
 4. 导入本项目<br />
 5. 在终端输入go build -ldflags="-H windowsgui"编译项目产生可执行文件，参考[walk官方教程](https://github.com/lxn/walk)<br />
 6. 运行可执行文件<br />
