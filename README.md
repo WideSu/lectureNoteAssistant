@@ -58,15 +58,15 @@
 报错的原因有很多，未配置ffmpeg依赖、软件运行命令错误、阿里云、腾讯云等账户权限问题都可能会导致软件显示错误。如果您遇到麻烦，可以加QQ 1197749338与我交流。
 
 ##### 3.如何运行？
-1. 在Go官网下载安装包<br />
-2. 在ffmpeg官网下载full-build的安装包，解压后将其中bin文件加入系统变量Path中<br />
+1. 在Go官网下载安装包，参考[Go安装教程](https://golang.org/doc/install)<br />
+2. 在ffmpeg官网下载对应操作系统的full-build的安装包，解压后将其中bin文件加入系统变量Path中[ffmpeg下载地址](https://ffmpeg.org/download.html)<br />
 3. 在VS Code中配置Go开发环境（Go扩展 以及launch.json）<br />
 4. 导入本项目<br />
-5. 在终端输入go build -ldflags="-H windowsgui"编译项目产生可执行文件<br />
+5. 在终端输入go build -ldflags="-H windowsgui"编译项目产生可执行文件，参考[walk官方教程](https://github.com/lxn/walk)<br />
 6. 运行可执行文件<br />
-7. 配置阿里云语音接口<br />
-8. 配置腾讯、百度翻译接口<br />
-9. 配置阿里云OSS存储接口<br />
+7. 配置阿里云语音接口[录音文件识别](https://ai.aliyun.com/nls/filetrans?spm=5176.12061031.1228726.1.47fe3cb43I34mn) <br />
+8. 配置腾讯、百度翻译接口[百度翻译API](http://api.fanyi.baidu.com/api/trans/product/index)[腾讯翻译API](https://cloud.tencent.com/product/tmt)  <br />
+9. 配置阿里云OSS存储接口[OSS对象存储](https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.13.e9392c4aGfj5vj&aly_as=K11FcpO8)<br />
 
 <a name="f3dc992e"></a>
 
