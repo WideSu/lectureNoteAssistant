@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"lectureNoteAssistant/app/parse"
+	"lectureNoteAssistant/app/tool"
+	"lectureNoteAssistant/app/translate"
 	"os"
 	"path"
 	"strconv"
 	"strings"
 	"time"
-	"videosrt/app/parse"
-	"videosrt/app/tool"
-	"videosrt/app/translate"
 )
 
 //字幕行结构

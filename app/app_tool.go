@@ -2,10 +2,10 @@ package app
 
 import (
 	"bytes"
+	"lectureNoteAssistant/app/tool"
 	"regexp"
 	"strconv"
 	"strings"
-	"videosrt/app/tool"
 )
 
 //语气词过滤

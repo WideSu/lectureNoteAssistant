@@ -1,9 +1,9 @@
 package app
 
 import (
-	"videosrt/app/aliyun"
-	"videosrt/app/datacache"
-	"videosrt/app/translate"
+	"lectureNoteAssistant/app/aliyun"
+	"lectureNoteAssistant/app/datacache"
+	"lectureNoteAssistant/app/translate"
 )
 
 //输出文件类型

@@ -1,14 +1,14 @@
 package main
 
 import (
+	. "lectureNoteAssistant/app"
+	"lectureNoteAssistant/app/ffmpeg"
+	"lectureNoteAssistant/app/tool"
 	"log"
 	"runtime"
 	"strconv"
 	"strings"
 	"time"
-	. "videosrt/app"
-	"videosrt/app/ffmpeg"
-	"videosrt/app/tool"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"

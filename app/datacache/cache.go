@@ -1,8 +1,8 @@
 package datacache
 
 import (
+	"lectureNoteAssistant/app/tool"
 	"os"
-	"videosrt/app/tool"
 )
 
 type AppCache struct {

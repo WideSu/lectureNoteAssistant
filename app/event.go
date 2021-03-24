@@ -2,15 +2,15 @@ package app
 
 import (
 	"errors"
+	"lectureNoteAssistant/app/aliyun"
+	"lectureNoteAssistant/app/tool"
+	"lectureNoteAssistant/app/translate"
 	"log"
 	"os"
 	"path"
 	"path/filepath"
 	"regexp"
 	"strings"
-	"videosrt/app/aliyun"
-	"videosrt/app/tool"
-	"videosrt/app/translate"
 
 	"github.com/lxn/walk"
 	. "github.com/lxn/walk/declarative"

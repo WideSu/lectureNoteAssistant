@@ -3,11 +3,11 @@ package translate
 import (
 	"errors"
 	"io/ioutil"
+	"lectureNoteAssistant/app/tool"
 	"net/http"
 	"net/url"
 	"strconv"
 	"time"
-	"videosrt/app/tool"
 
 	"github.com/buger/jsonparser"
 )

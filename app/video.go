@@ -9,10 +9,10 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"videosrt/app/aliyun"
-	"videosrt/app/ffmpeg"
-	"videosrt/app/tool"
-	"videosrt/app/translate"
+	"lectureNoteAssistant/app/aliyun"
+	"lectureNoteAssistant/app/ffmpeg"
+	"lectureNoteAssistant/app/tool"
+	"lectureNoteAssistant/app/translate"
 
 	//text summarization
 	"github.com/buger/jsonparser"

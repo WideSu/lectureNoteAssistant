@@ -1,11 +1,11 @@
 package aliyun
 
 import (
+	"lectureNoteAssistant/app/tool"
 	"regexp"
 	"strings"
 	"unicode"
 	"unicode/utf8"
-	"videosrt/app/tool"
 
 	"github.com/buger/jsonparser"
 )

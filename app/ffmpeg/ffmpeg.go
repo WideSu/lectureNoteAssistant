@@ -2,11 +2,11 @@ package ffmpeg
 
 import (
 	"errors"
+	"lectureNoteAssistant/app/tool"
 	"os"
 	"os/exec"
 	"strings"
 	"syscall"
-	"videosrt/app/tool"
 )
 
 type Ffmpeg struct {

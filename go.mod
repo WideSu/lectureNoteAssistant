@@ -1,10 +1,10 @@
-module videosrt
+module lectureNoteAssistant
 
 go 1.12
 
 require (
 	crawler.club/dl v0.0.0-20200622075740-2bbb15a2cf94 // indirect
-	github.com/JesusIslam/tldr v0.6.0
+	github.com/JesusIslam/tldr v0.6.0 // indirect
 	github.com/PuerkitoBio/goquery v1.5.0
 	github.com/akavel/rsrc v0.10.2 // indirect
 	github.com/aliyun/alibaba-cloud-sdk-go v1.60.268

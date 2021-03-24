@@ -3,9 +3,9 @@ package parse
 import (
 	"bufio"
 	"errors"
+	"lectureNoteAssistant/app/tool"
 	"os"
 	"strings"
-	"videosrt/app/tool"
 )
 
 //允许解析的文件类型
