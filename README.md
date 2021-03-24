@@ -2,8 +2,7 @@
 
 ## 简介
 
-`LectureNoteAssistant` 是采用`Golang`语言开发的一个Windows GUI桌面应用。<br /> 可以用于识别中英文讲座视频语音自动生成字幕SRT/歌词LRC/文本TXT文件，以及视频摘要。<br />
-
+`LectureNoteAssistant` 是采用`Golang`语言开发的一个Windows GUI桌面应用。<br /> 可以用于识别中英文讲座视频语音自动生成字幕SRT/歌词LRC/文本TXT文件，以及视频摘要。<br /> [下载链接](https://github.com/WideSu/lectureNoteAssistant/blob/main/lectureNoteAssistant.exe)
 <a name="0b884e4f"></a>
 
 ## 软件架构
