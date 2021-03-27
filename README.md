@@ -2,15 +2,12 @@
 
 ## 简介
 
-`LectureNoteAssistant` 是采用`Golang`语言开发的一个Windows GUI桌面应用。<br /> 可以用于识别中英文讲座视频语音自动生成字幕SRT/歌词LRC/文本TXT文件，以及视频摘要。<br /> [win-64.exe](https://github.com/WideSu/lectureNoteAssistant/blob/main/lectureNoteAssistant.exe)
+`LectureNoteAssistant` 是采用`Golang`语言开发的一个Windows GUI桌面应用。<br /> 可以用于识别中英文讲座视频语音自动生成字幕SRT/文本TXT文件，以及视频摘要。<br /> [win-64.exe](https://github.com/WideSu/lectureNoteAssistant/blob/main/lectureNoteAssistant.exe)
 <a name="0b884e4f"></a>
 
 ## 软件架构
 ![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/softwareArchitect.png)
 
-## 软件界面
-
-![image](https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif)
 
 ## 应用场景
 
@@ -31,7 +28,7 @@
 （支持的视频格式：.mp4 , .mpeg , .mkv , .wmv , .avi , .m4v , .mov , .flv , .rmvb , .3gp , .f4v
   支持的音频格式：.mp3 , .wav , .aac , .wma , .flac , .m4a
   支持的字幕格式：.srt）
-- 支持同时输出字幕SRT文件、LRC文件、普通文本3种类型
+- 支持同时输出字幕SRT文件、普通文本、视频摘要3种类型
 - 支持语气词过滤、自定义文本过滤、正则过滤等，使软件生成的字幕更加精准
 - 支持字幕中英互译、双语字幕输出，及日语、韩语、法语、德语、西班牙语、俄语、意大利语、泰语等
 - 支持多翻译引擎（百度翻译、腾讯云翻译）
