@@ -113,7 +113,7 @@ func main() {
 			ButtonStyle: ToolBarButtonImageBeforeText,
 			Items: []MenuItem{
 				Menu{
-					Text:  "打开本地讲座视频文件",
+					Text:  "本地视频文件",
 					Image: "./data/img/open.png",
 					Items: []MenuItem{
 						Action{
@@ -154,12 +154,12 @@ func main() {
 					},
 				},
 				Menu{
-					Text:  "新建语音转文字引擎",
+					Text:  "新建语音/翻译引擎配置",
 					Image: "./data/img/new.png",
 					Items: []MenuItem{
 						Action{
 							Image: "./data/img/voice.png",
-							Text:  "语音引擎（阿里云）",
+							Text:  "阿里云语音交互引擎",
 							OnTriggered: func() {
 								mw.RunSpeechEngineSetingDialog(mw, func() {
 									thisData := Engine.GetEngineOptionsSelects()
@@ -186,7 +186,7 @@ func main() {
 						},
 						Action{
 							Image: "./data/img/translate.png",
-							Text:  "翻译引擎（百度翻译）",
+							Text:  "百度翻译引擎",
 							OnTriggered: func() {
 								mw.RunBaiduTranslateEngineSetingDialog(mw, func() {
 									thisData := Translate.GetTranslateEngineOptionsSelects()
@@ -212,7 +212,7 @@ func main() {
 						},
 						Action{
 							Image: "./data/img/translate.png",
-							Text:  "翻译引擎（腾讯云）",
+							Text:  "腾讯翻译引擎",
 							OnTriggered: func() {
 								mw.RunTengxunyunTranslateEngineSetingDialog(mw, func() {
 									thisData := Translate.GetTranslateEngineOptionsSelects()
@@ -236,33 +236,32 @@ func main() {
 					},
 				},
 				Menu{
-					Text:  "存储设置",
+					Text:  "软件存储设置",
 					Image: "./data/img/setings.png",
 					Items: []MenuItem{
 						Action{
-							Text:  "OSS对象存储设置",
+							Text:  "OSS对象存储",
 							Image: "./data/img/oss.png",
 							OnTriggered: func() {
 								mw.RunObjectStorageSetingDialog(mw)
 							},
 						},
-						Action{
-							Text:  "软件设置",
-							Image: "./data/img/app-setings.png",
-							OnTriggered: func() {
-								mw.RunAppSetingDialog(mw, func(setings *AppSetings) {
-									//更新配置
-									appSetings.MaxConcurrency = setings.MaxConcurrency
-									appSetings.SrtFileDir = setings.SrtFileDir
-									appSetings.CloseNewVersionMessage = setings.CloseNewVersionMessage
-									appSetings.CloseAutoDeleteOssTempFile = setings.CloseAutoDeleteOssTempFile
-									appSetings.CloseIntelligentBlockSwitch = setings.CloseIntelligentBlockSwitch
+					},
+				},
+				Menu{
+					Text: "软件并发/存储设置",
+					OnTriggered: func() {
+						mw.RunAppSetingDialog(mw, func(setings *AppSetings) {
+							//更新配置
+							appSetings.MaxConcurrency = setings.MaxConcurrency
+							appSetings.SrtFileDir = setings.SrtFileDir
+							appSetings.CloseNewVersionMessage = setings.CloseNewVersionMessage
+							appSetings.CloseAutoDeleteOssTempFile = setings.CloseAutoDeleteOssTempFile
+							appSetings.CloseIntelligentBlockSwitch = setings.CloseIntelligentBlockSwitch
 
-									multitask.SetMaxConcurrencyNumber(setings.MaxConcurrency)
-									srtTranslateMultitask.SetMaxConcurrencyNumber(setings.MaxConcurrency)
-								})
-							},
-						},
+							multitask.SetMaxConcurrencyNumber(setings.MaxConcurrency)
+							srtTranslateMultitask.SetMaxConcurrencyNumber(setings.MaxConcurrency)
+						})
 					},
 				},
 			},
@@ -538,25 +537,25 @@ func main() {
 									//更新缓存
 									Setings.SetCacheAppSetingsData(appSetings)
 								},
-							},
-							//输出文件编码
-							Label{
-								Text: "输出编码：",
-							},
-							ComboBox{
-								Value:         Bind("OutputEncode", SelRequired{}),
-								BindingMember: "Id",
-								DisplayMember: "Name",
-								Model:         GetOutputEncodeOptionsSelects(),
-								ColumnSpan:    3,
-								MaxSize:       Size{Width: 60},
-								OnCurrentIndexChanged: func() {
-									_ = operateDb.Submit()
-									appSetings.OutputEncode = operateFrom.OutputEncode
-									//更新缓存
-									Setings.SetCacheAppSetingsData(appSetings)
+							}, /*
+								//输出文件编码
+								Label{
+									Text: "输出编码：",
 								},
-							},
+								ComboBox{
+									Value:         Bind("OutputEncode", SelRequired{}),
+									BindingMember: "Id",
+									DisplayMember: "Name",
+									Model:         GetOutputEncodeOptionsSelects(),
+									ColumnSpan:    3,
+									MaxSize:       Size{Width: 60},
+									OnCurrentIndexChanged: func() {
+										_ = operateDb.Submit()
+										appSetings.OutputEncode = operateFrom.OutputEncode
+										//更新缓存
+										Setings.SetCacheAppSetingsData(appSetings)
+									},
+								},*/
 						},
 					},
 				},
