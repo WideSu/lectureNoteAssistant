@@ -48,20 +48,20 @@
 9. Configure OSS object storage interface[OSS object storage interface on Aliyun](https://www.aliyun.com/product/oss?spm=5176.12825654.eofdhaal5.13.e9392c4aGfj5vj&aly_as=K11FcpO8)<br />
 
 ##### 2.How to promote the accuracy for audio recognition and translation？
-1. 可在阿里云智能语音交互平台上上传对应的训练集，训练自定义模型[阿里云智能语音交互自定义模型官方Doc](https://help.aliyun.com/document_detail/72216.html?spm=a2c4g.11186623.6.565.3d0569386dk3T3)<br />
-2. 可在阿里云智能语音交互平台上添加专业词汇热词，改善软件对领域专业词汇的识别准确度[阿里云智能语音交互管理热词官方Doc](https://help.aliyun.com/document_detail/72215.html?spm=a2c4g.11186623.6.564.40071037R34ic5)<br />
-3. 在软件中设置语气词、替换规则<br />
+1. Train your own model on Aliyun intelligent voice interaction plateform using your own train set[Docs for customizing models on Aliyun](https://help.aliyun.com/document_detail/72216.html?spm=a2c4g.11186623.6.565.3d0569386dk3T3)<br />
+2. Hot words: hot words of professional vocabulary can be added to Alibaba cloud intelligent voice interaction platform to improve the recognition accuracy of professional vocabulary in the field[Docs for adding hot words on Aliyun intelligent voice interaction platform](https://help.aliyun.com/document_detail/72215.html?spm=a2c4g.11186623.6.564.40071037R34ic5)<br />
+3. Text filtering: set modal particles and replacement rules in software<br />
 
-#### 3.软件是否收费？
-本软件使用阿里云，腾讯云接口，只要您未超出用量不会收取任何费用（如阿里云智能语音交互语音识别免费班每天限量2h）。
+#### 3.Is the software free to use？
+This software uses the interfaces of Alibaba cloud and Tencent cloud. As long as you do not exceed the usage, you will not charge any fee (for example, the free class of Alibaba cloud intelligent voice interactive speech recognition is limited to 2 hours per day).
 
 <a name="f3dc992e"></a>
 
-## 测试视频来源：LED演讲视频
-链接：https://pan.baidu.com/s/16gfn1lUSNiNWKCEP1uUlKQ <br />
-提取码：fjq4 <br />
-复制这段内容后打开百度网盘手机App，操作更方便哦--来自百度网盘超级会员V3的分享<br />
+## Test the software：LED lecture videos
+Link：https://pan.baidu.com/s/16gfn1lUSNiNWKCEP1uUlKQ <br />
+Key：fjq4 <br />
+From baidu netdisk<br />
 
-## 交流&联系
+## Contact
 
-- QQ：1197749338
+- Developer QQ：1197749338 Linked In:Anni Huang
