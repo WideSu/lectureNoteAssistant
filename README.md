@@ -14,7 +14,7 @@ Supports video and audio files in common formats, including:
 - For videos, we support: .mp4 , .mpeg , .mkv , .wmv , .avi , .m4v , .mov , .flv , .rmvb , .3gp , .f4v . 
 - For audio: .mp3 , .wav , .aac , .wma , .flac , .m4a formats.
 
-## Output files includes
+## Output files
 It can generate 3 types Support subtitle files including: SRT file, ordinary text, lecture summary simultaneously or seperately. And with bilingual translation between 10 languages including Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Italian, and Thai. 
 
 ## Services and SDKs used:
@@ -23,7 +23,7 @@ It can generate 3 types Support subtitle files including: SRT file, ordinary tex
 - **aliyun-cloud-sdk-go，aliyun-oss-go-sdk，tencentcloud-sdk-go** for storing the audio files and generated transcripts
 - the intelligent voice interactive service on Aliyun
 
-## Demo of this app
+## Demo
 
 - Firstly, upload the video or audio on your computer
 
@@ -39,7 +39,4 @@ This system uses the go [walk](https://github.com/lxn/walk) library for developm
 
 <img width="1086" alt="image" src="https://user-images.githubusercontent.com/44923423/178111178-3838b4de-4663-4d2e-b79d-b8fc01a20885.png">
 
-## System function architecture
-
-![image](https://user-images.githubusercontent.com/44923423/178111280-b5cfdbd0-ac03-4f03-91d5-47162afbe736.png)
 
