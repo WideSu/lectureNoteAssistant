@@ -1,6 +1,10 @@
 # lectureNoteAssistant
 A windows desktop application which can generate subtitles and translations for videos which you can use for generating billingual transcripts for videos.
 
+## How to use it?
+
+Just download the [exe](https://github.com/WideSu/lectureNoteAssistant/blob/main/lectureNoteAssistant.exe) file, and run it on your **windows** computer.
+
 
 ## Supported video types
 Supports video and audio files in common formats, including: 
