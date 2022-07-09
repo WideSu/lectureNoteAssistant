@@ -29,3 +29,7 @@ It can generate 3 types Support subtitle files including: SRT file, ordinary tex
 - Secondly, submit it. The software will start to generate transcripts for you
 
 <img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif">
+
+## System architecture
+
+<img width="786" alt="image" src="https://user-images.githubusercontent.com/44923423/178110981-dca69cfe-5a2f-4e9f-97c0-48a17bb2b1af.png">
