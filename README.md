@@ -1,6 +1,9 @@
 # lectureNoteAssistant
 A windows desktop application which can generate subtitles and translations for videos which you can use for generating billingual transcripts for videos.
 
+<img width="895" alt="image" src="https://user-images.githubusercontent.com/44923423/178111967-1675c55f-501e-4f60-8d07-fe6fc023c60b.png">
+
+
 ## How to use it?
 
 Just download the [exe](https://github.com/WideSu/lectureNoteAssistant/blob/main/lectureNoteAssistant.exe) file, and run it on your **windows** computer.
@@ -35,3 +38,8 @@ It can generate 3 types Support subtitle files including: SRT file, ordinary tex
 This system uses the go [walk](https://github.com/lxn/walk) library for development, and main.go contains the code and main logic of the main interface of the program. It calls the relevant code files in the app package to perform corresponding operations. Interface logic code, data object separation. Basically similar to the MVC pattern. It is divided into presentation layer, business logic layer and data access layer. The presentation layer is used to interact with the user, and then calls the functions of the corresponding modules in the app package to perform business operations, and the corresponding modules of the business operations then call the data layer functions to operate on the data.
 
 <img width="1086" alt="image" src="https://user-images.githubusercontent.com/44923423/178111178-3838b4de-4663-4d2e-b79d-b8fc01a20885.png">
+
+## System function architecture
+
+![image](https://user-images.githubusercontent.com/44923423/178111280-b5cfdbd0-ac03-4f03-91d5-47162afbe736.png)
+
