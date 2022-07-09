@@ -22,6 +22,10 @@ It can generate 3 types Support subtitle files including: SRT file, ordinary tex
 
 ## Demo of this app
 
-<img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif">
+- Firstly, upload the video or audio on your computer
 
 <img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/LectureNoteAssistant_1.gif">
+
+- Secondly, submit it. The software will start to generate transcripts for you
+
+<img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif">
