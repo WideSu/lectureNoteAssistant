@@ -21,5 +21,7 @@ It can generate 3 types Support subtitle files including: SRT file, ordinary tex
 - the intelligent voice interactive service on Aliyun
 
 ## Demo of this app
-<img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/LectureNoteAssistant.gif">
+
+<img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/lectureNoteAssistant.gif">
+
 <img src="https://github.com/WideSu/lectureNoteAssistant/blob/main/screenshot/LectureNoteAssistant_1.gif">
