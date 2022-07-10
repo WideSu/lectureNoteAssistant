@@ -15,7 +15,7 @@ Supports video and audio files in common formats, including:
 - For audio: .mp3 , .wav , .aac , .wma , .flac , .m4a formats.
 
 ## Output files
-It can generate 3 types Support subtitle files including: SRT file, ordinary text, lecture summary simultaneously or seperately. And with bilingual translation between 10 languages including Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Italian, and Thai. 
+It can generate 3 types Support subtitle files including: SRT file, ordinary text, lecture summary simultaneously or seperately according to user's needs. And with bilingual translation between 10 languages including Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Italian, and Thai. 
 
 ## Services and SDKs used:
 - Baidu and tencent Translation SDK
