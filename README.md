@@ -1,5 +1,5 @@
 # lectureNoteAssistant
-A windows desktop application which can generate subtitles and translations for videos which you can use for generating billingual transcripts for videos.
+A windows desktop application that can generate subtitles and translations for videos. You can use it for generating bilingual transcripts for videos.
 
 <img width="895" alt="image" src="https://user-images.githubusercontent.com/44923423/178111967-1675c55f-501e-4f60-8d07-fe6fc023c60b.png">
 
