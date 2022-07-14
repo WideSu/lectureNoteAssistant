@@ -8,13 +8,13 @@ import (
 	"strings"
 )
 
-//语气词过滤
+//remove stop words
 func ModalWordsFilter(s string, w string) string {
 	tmpText := strings.ReplaceAll(s, w, "")
 	if strings.TrimSpace(tmpText) == "" || tool.CheckOnlySymbolText(strings.TrimSpace(tmpText)) {
 		return ""
 	} else {
-		//尝试过滤重复语气词
+		//Attempt to filter repeating particles
 		compile, e := regexp.Compile(w + "{2,}")
 		if e != nil {
 			return s
@@ -23,13 +23,13 @@ func ModalWordsFilter(s string, w string) string {
 	}
 }
 
-//自定义规则过滤
+//Custom rule filtering
 func DefinedWordRuleFilter(s string, rule *AppDefinedFilterRule) string {
 	if rule.Way == FILTER_TYPE_STRING {
-		//文本过滤
+		//filter text by rules
 		s = strings.ReplaceAll(s, rule.Target, rule.Replace)
 	} else if rule.Way == FILTER_TYPE_REGX {
-		//正则过滤
+		//filter text by regex expressions
 		compile, e := regexp.Compile(rule.Target)
 		if e != nil {
 			return s
@@ -42,7 +42,7 @@ func DefinedWordRuleFilter(s string, rule *AppDefinedFilterRule) string {
 	return s
 }
 
-//拼接字幕字符串
+//Output the content into subtitle file(.srt)
 func MakeSubtitleText(index int, startTime int64, endTime int64, text string, translateText string, bilingualSubtitleSwitch bool, bilingualAsc bool) string {
 	var content bytes.Buffer
 	content.WriteString(strconv.Itoa(index))
@@ -52,7 +52,7 @@ func MakeSubtitleText(index int, startTime int64, endTime int64, text string, tr
 	content.WriteString(tool.SubtitleTimeMillisecond(endTime, true))
 	content.WriteString("\r\n")
 
-	//输出双语字幕
+	//Output bilingual subtitles
 	if bilingualSubtitleSwitch {
 		if bilingualAsc {
 			content.WriteString(text)
@@ -72,7 +72,7 @@ func MakeSubtitleText(index int, startTime int64, endTime int64, text string, tr
 	return content.String()
 }
 
-//拼接文本格式
+//Output the content into text file(.txt)
 func MakeText(index int, startTime int64, endTime int64, text string) string {
 	var content bytes.Buffer
 	content.WriteString(text)
@@ -81,7 +81,7 @@ func MakeText(index int, startTime int64, endTime int64, text string) string {
 	return content.String()
 }
 
-//拼接歌词文本
+//Output the content into music lrc file(.lrc)
 func MakeMusicLrcText(index int, startTime int64, endTime int64, text string) string {
 	var content bytes.Buffer
 	content.WriteString("[")
