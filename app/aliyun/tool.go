@@ -17,13 +17,13 @@ type AliyunAudioRecognitionResultBlock struct {
 	BlockEmptyHandle bool
 }
 
-//阿里云录音录音文件识别 - 智能分段处理
+//Alibaba Cloud Audio Recording File Recognition - Intelligent Segmentation Processing
 func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAudioRecognitionResult)) {
 	var audioResult = make(map[int64][]*AliyunAudioRecognitionResultBlock)
 	var wordResult = make(map[int64][]*AliyunAudioWord)
 	var err error
 
-	//获取录音识别数据集
+	//Get the recording recognition dataset
 	_, err = jsonparser.ArrayEach(result, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 		text, _ := jsonparser.GetString(value, "Text")
 		channelId, _ := jsonparser.GetInt(value, "ChannelId")
@@ -44,10 +44,10 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 
 		_, isPresent := audioResult[channelId]
 		if isPresent {
-			//追加
+			//append on the existing audio result
 			audioResult[channelId] = append(audioResult[channelId], vresult)
 		} else {
-			//初始
+			//Init
 			audioResult[channelId] = []*AliyunAudioRecognitionResultBlock{}
 			audioResult[channelId] = append(audioResult[channelId], vresult)
 		}
@@ -56,7 +56,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 		panic(err)
 	}
 
-	//获取词语数据集
+	//Get word dataset
 	_, err = jsonparser.ArrayEach(result, func(value []byte, dataType jsonparser.ValueType, offset int, err error) {
 		word, _ := jsonparser.GetString(value, "Word")
 		channelId, _ := jsonparser.GetInt(value, "ChannelId")
@@ -70,10 +70,10 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 		}
 		_, isPresent := wordResult[channelId]
 		if isPresent {
-			//追加
+			//Append on previous result
 			wordResult[channelId] = append(wordResult[channelId], vresult)
 		} else {
-			//初始
+			//Init
 			wordResult[channelId] = []*AliyunAudioWord{}
 			wordResult[channelId] = append(wordResult[channelId], vresult)
 		}
@@ -83,7 +83,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 	}
 
 	var symbol = []string{"？", "。", "，", "！", "；", "、", "?", ".", ",", "!"}
-	//数据集处理
+	//Dataset processing
 	for _, value := range audioResult {
 		for _, data := range value {
 			// filter
@@ -98,7 +98,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 		}
 	}
 
-	//遍历输出
+	//Iterate over the output
 	for _, value := range wordResult {
 
 		var block string = ""
@@ -108,7 +108,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 		var beginTime int64 = 0
 		var blockBool = false
 
-		var ischinese = IsChineseWords(value) //校验中文
+		var ischinese = IsChineseWords(value) //Check if it is Chinese
 
 		var chineseNumberWordIndexs []int
 		var chineseNumberDiffLength int = 0
@@ -132,7 +132,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 						chineseNumberDiffLength += cl
 						chineseNumberWordIndexs = append(chineseNumberWordIndexs, i)
 					} else {
-						//例外
+						// catch expection
 						if i != 0 {
 							newWord := value[i-1].Word + word.Word
 							cl := tool.ChineseNumberToLowercaseLength(newWord) - utf8.RuneCountInString(newWord)
@@ -144,7 +144,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 					}
 				}
 			} else {
-				block += CompleSpace(word.Word) //补全空格
+				block += CompleSpace(word.Word) //Complete spaces
 			}
 
 			blockRune = utf8.RuneCountInString(block)
@@ -175,11 +175,11 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 									//fmt.Println("\n")
 
 									var thisText = ""
-									//容错机制
+									// fault tolerance mechanism
 									if t == (len(w.Blocks) - 1) {
 										thisText = SubString(w.Text, lastBlock, 10000)
 									} else {
-										//下个词提前结束
+										// next word ends early
 										if i < len(value)-1 && value[i+1].BeginTime >= w.EndTime {
 											thisText = SubString(w.Text, lastBlock, 10000)
 											early = true
@@ -190,7 +190,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 
 									lastBlock = B
 									if early == true {
-										//全部设置为-1
+										//All set to -1
 										for vt, vb := range w.Blocks {
 											if vb != -1 {
 												w.Blocks[vt] = -1
@@ -209,7 +209,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 										SpeechRate:      w.SpeechRate,
 										EmotionValue:    w.EmotionValue,
 									}
-									callback(vresult) //回调传参
+									callback(vresult) //callback parameter
 
 									blockBool = true
 									break
@@ -220,11 +220,11 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 							//fmt.Println(block)
 
 							if FindSliceIntCount(w.Blocks, -1) == len(w.Blocks) {
-								//全部截取完成
+								//All interception completed
 								block = ""
 								lastBlock = 0
 							}
-							//容错机制
+							// Fault tolerance mechanism
 							if FindSliceIntCount(w.Blocks, -1) == (len(w.Blocks)-1) && flag == false {
 								var thisText = SubString(w.Text, lastBlock, 10000)
 
@@ -244,22 +244,20 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 								//fmt.Println(  block )
 								//fmt.Println(  word.Word , beginTime, w.EndTime , flag  , word.EndTime  )
 
-								callback(vresult) //回调传参
+								callback(vresult) //Sending back parameters using the callback function
 
-								//覆盖下一段落的时间戳
+								// Overwrite the timestamp of the next paragraph
 								if windex < (len(p) - 1) {
 									beginTime = p[windex+1].BeginTime
 								} else {
 									beginTime = w.EndTime
 								}
-
-								//清除参数
+								//Clear the parameters
 								block = ""
 								lastBlock = 0
 							}
 						} else {
-
-							//清除参数
+							//Clear the parameters
 							block = ""
 							lastBlock = 0
 							blockBool = true
@@ -274,7 +272,7 @@ func AliyunAudioResultWordHandle(result []byte, callback func(vresult *AliyunAud
 									SpeechRate:      w.SpeechRate,
 									EmotionValue:    w.EmotionValue,
 								}
-								callback(vresult) //回调传参
+								callback(vresult) //Sending back parameters using the callback function
 								w.BlockEmptyHandle = true
 							}
 
@@ -297,7 +295,7 @@ func FindSliceIntCount(slice []int, target int) int {
 	return c
 }
 
-//批量替换多个关键词文本
+//Batch replace multiple keyword texts
 func ReplaceStrs(strs string, olds []string, s string) string {
 	for _, word := range olds {
 		strs = strings.Replace(strs, word, s, -1)
@@ -315,7 +313,7 @@ func StringIndex(strs string, word rune) int {
 	return -1
 }
 
-//补全右边空格
+//Fill right spaces
 func CompleSpace(s string) string {
 	s = strings.TrimLeft(s, " ")
 	s = strings.TrimRight(s, " ")
@@ -379,11 +377,11 @@ func GetTextBlock(strs string) []int {
 }
 
 func SubString(str string, begin int, length int) (substr string) {
-	// 将字符串的转换成[]rune
+	// convert string to[]rune
 	rs := []rune(str)
 	lth := len(rs)
 
-	// 简单的越界判断
+	// simple out-of-bounds judgment
 	if begin < 0 {
 		begin = 0
 	}
@@ -394,13 +392,13 @@ func SubString(str string, begin int, length int) (substr string) {
 	if end > lth {
 		end = lth
 	}
-	// 返回子串
+	// return substring
 	return string(rs[begin:end])
 }
 
-//过滤文本
+//Filter Text
 func FilterText(text string) string {
-	//去除换行符
+	//remove newlines
 	re, _ := regexp.Compile("[\n|\r|\r\n]+")
 	text = re.ReplaceAllString(text, "")
 	return text
