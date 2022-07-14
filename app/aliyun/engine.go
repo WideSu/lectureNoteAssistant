@@ -12,11 +12,11 @@ import (
 )
 
 const (
-	ALIYUN_CLOUND_REGION_CHA = 1 //中国
-	ALIYUN_CLOUND_REGION_INT = 2 //海外
+	ALIYUN_CLOUND_REGION_CHA = 1 //China
+	ALIYUN_CLOUND_REGION_INT = 2 //Overseas
 )
 
-//阿里云语音识别引擎
+//Alibaba Cloud Speech Recognition Engine
 type AliyunClound struct {
 	AccessKeyId     string
 	AccessKeySecret string
@@ -24,19 +24,19 @@ type AliyunClound struct {
 	Region          int
 }
 
-//阿里云录音文件识别结果集
+//Alibaba Cloud recording file recognition result set
 type AliyunAudioRecognitionResult struct {
-	Text            string //文本结果
-	TranslateText   string //翻译文本结果
-	ChannelId       int64  //音轨ID
-	BeginTime       int64  //该句的起始时间偏移，单位为毫秒
-	EndTime         int64  //该句的结束时间偏移，单位为毫秒
-	SilenceDuration int64  //本句与上一句之间的静音时长，单位为秒
-	SpeechRate      int64  //本句的平均语速，单位为每分钟字数
-	EmotionValue    int64  //情绪能量值1-10，值越高情绪越强烈
+	Text            string //text results
+	TranslateText   string //translate text results
+	ChannelId       int64  //Track ID
+	BeginTime       int64  //The start time offset of the sentence, in milliseconds
+	EndTime         int64  //The end time offset of the sentence, in milliseconds
+	SilenceDuration int64  //The duration of silence between this sentence and the previous sentence, in seconds
+	SpeechRate      int64  //The average speaking rate of this sentence, in words per minute
+	EmotionValue    int64  //The emotional energy value is 1-10, the higher the value, the stronger the emotion
 }
 
-//阿里云识别词语数据集
+//Alibaba Cloud Recognition Word Dataset
 type AliyunAudioWord struct {
 	Word      string
 	ChannelId int64
@@ -44,7 +44,7 @@ type AliyunAudioWord struct {
 	EndTime   int64
 }
 
-// 定义常量
+// Befine constants
 const REGION_ID_REGION_INT string = "ap-southeast-1"
 const ENDPOINT_NAME_REGION_INT string = "ap-southeast-1"
 const PRODUCT_REGION_INT string = "nls-filetrans"
@@ -60,36 +60,36 @@ const API_VERSION_REGION_CHA string = "2018-08-17"
 const POST_REQUEST_ACTION string = "SubmitTask"
 const GET_REQUEST_ACTION string = "GetTaskResult"
 
-// 请求参数key
+// request parameter key
 const KEY_APP_KEY string = "appkey"
 const KEY_FILE_LINK string = "file_link"
 const KEY_VERSION string = "version"
 const KEY_ENABLE_WORDS string = "enable_words"
 
-//是否启用统一后处理，默认值为 false
+//Whether to enable unified post-processing, the default value is false
 const ENABLE_UNIFY_POST string = "enable_unify_post"
 
-//是否打开ITN，中文数字将转为阿拉伯数字输出，默认值为 false
-//开启时需要设置version为”4.0”， enable_unify_post 必须为 true
+//Whether to open ITN, Chinese numbers will be converted to Arabic numbers for output, the default value is false
+//When opening, you need to set version to "4.0", enable_unify_post must be true
 const ENABLE_INVERSE_TEXT_NORMALIZATION string = "enable_inverse_text_normalization"
 
-//如需启用后处理模型，默认值为 chinese，开启时需要设置version为”4.0”，
+//If you want to enable the post-processing model, the default value is chinese, and you need to set the version to "4.0" when you open it.
 //enable_unify_post 必须为 true，可选值为 english
 const UNIFY_POST_MODEL_NAME string = "unify_post_model_name"
 
-// 响应参数key
+//response parameter key
 const KEY_TASK string = "Task"
 const KEY_TASK_ID string = "TaskId"
 const KEY_STATUS_TEXT string = "StatusText"
 const KEY_RESULT string = "Result"
 
-// 状态值
+//status code
 const STATUS_SUCCESS string = "SUCCESS"
 const STATUS_RUNNING string = "RUNNING"
 const STATUS_QUEUEING string = "QUEUEING"
 
-//发起录音文件识别
-//接口文档 https://help.aliyun.com/document_detail/90727.html?spm=a2c4g.11186623.6.581.691af6ebYsUkd1
+//Initiate recording file identification
+//Documentation of this interface: https://help.aliyun.com/document_detail/90727.html?spm=a2c4g.11186623.6.581.691af6ebYsUkd1
 func (c AliyunClound) NewAudioFile(fileLink string) (string, *sdk.Client, error) {
 	regionId, domain, apiVersion, product := c.GetApiVariable()
 
@@ -111,33 +111,33 @@ func (c AliyunClound) NewAudioFile(fileLink string) (string, *sdk.Client, error)
 	mapTask := make(map[string]string)
 	mapTask[KEY_APP_KEY] = c.AppKey
 	mapTask[KEY_FILE_LINK] = fileLink
-	// 新接入请使用4.0版本，已接入(默认2.0)如需维持现状，请注释掉该参数设置
+	// Please use version 4.0 for new access, already connected (default 2.0) if you want to maintain the status quo, please comment out this parameter setting
 	mapTask[KEY_VERSION] = "4.0"
-	// 设置是否输出词信息，默认为false，开启时需要设置version为4.0
+	// Set whether to output word information, the default is false, you need to set the version to 4.0 when opening
 	mapTask[KEY_ENABLE_WORDS] = "true"
 
-	//启用统一后处理
+	//Enable unified postprocessing
 	//mapTask[ENABLE_UNIFY_POST] = "true"
 	//mapTask[ENABLE_INVERSE_TEXT_NORMALIZATION] = "true"
 	//mapTask[UNIFY_POST_MODEL_NAME] = "chinese"
 
-	// to json
+	//to json
 	task, err := json.Marshal(mapTask)
 	if err != nil {
 		return "", client, errors.New("to json error .")
 	}
 	postRequest.FormParams[KEY_TASK] = string(task)
-	// 发起请求
+	//Make a request
 	postResponse, err := client.ProcessCommonRequest(postRequest)
 	if err != nil {
 		return "", client, err
 	}
 	postResponseContent := postResponse.GetHttpContentString()
-	//校验请求
+	//Check request
 	if postResponse.GetHttpStatus() != 200 {
-		return "", client, errors.New("录音文件识别请求失败 , Http错误码 : " + strconv.Itoa(postResponse.GetHttpStatus()))
+		return "", client, errors.New("Recording file identification request failed , Http error : " + strconv.Itoa(postResponse.GetHttpStatus()))
 	}
-	//解析数据
+	//Analytical data
 	var postMapResult map[string]interface{}
 	err = json.Unmarshal([]byte(postResponseContent), &postMapResult)
 	if err != nil {
@@ -148,17 +148,17 @@ func (c AliyunClound) NewAudioFile(fileLink string) (string, *sdk.Client, error)
 	var statusText = ""
 	statusText = postMapResult[KEY_STATUS_TEXT].(string)
 
-	//检验结果
+	//Test result
 	if statusText == STATUS_SUCCESS {
 		taskId = postMapResult[KEY_TASK_ID].(string)
 		return taskId, client, nil
 	}
 
-	return "", client, errors.New("录音文件识别失败 , (" + c.GetErrorStatusTextMessage(statusText) + ")")
+	return "", client, errors.New("Fail to detect audio files , (" + c.GetErrorStatusTextMessage(statusText) + ")")
 }
 
-//获取录音文件识别结果
-//接口文档 https://help.aliyun.com/document_detail/90727.html?spm=a2c4g.11186623.6.581.691af6ebYsUkd1
+//Obtain the recognition result of the recording file
+//Documentation for this interface: https://help.aliyun.com/document_detail/90727.html?spm=a2c4g.11186623.6.581.691af6ebYsUkd1
 func (c AliyunClound) GetAudioFileResult(taskId string, client *sdk.Client, callback func(result []byte)) error {
 	_, domain, apiVersion, product := c.GetApiVariable()
 
@@ -171,7 +171,7 @@ func (c AliyunClound) GetAudioFileResult(taskId string, client *sdk.Client, call
 	getRequest.QueryParams[KEY_TASK_ID] = taskId
 	statusText := ""
 
-	//遍历获取识别结果
+	//Traverse to get the recognition result
 	for true {
 		getResponse, err := client.ProcessCommonRequest(getRequest)
 		if err != nil {
@@ -180,7 +180,7 @@ func (c AliyunClound) GetAudioFileResult(taskId string, client *sdk.Client, call
 		getResponseContent := getResponse.GetHttpContentString()
 
 		if getResponse.GetHttpStatus() != 200 {
-			return errors.New("识别结果查询请求失败 , Http错误码 : " + strconv.Itoa(getResponse.GetHttpStatus()))
+			return errors.New("Identification result query request failed, Http error code : " + strconv.Itoa(getResponse.GetHttpStatus()))
 		}
 
 		var getMapResult map[string]interface{}
@@ -189,10 +189,10 @@ func (c AliyunClound) GetAudioFileResult(taskId string, client *sdk.Client, call
 			return err
 		}
 
-		//调用回调函数
+		//Call callback function
 		callback(getResponse.GetHttpContentBytes())
 
-		//校验遍历条件
+		//Check traversal conditions
 		statusText = getMapResult[KEY_STATUS_TEXT].(string)
 		if statusText == STATUS_RUNNING || statusText == STATUS_QUEUEING {
 			time.Sleep(3 * time.Second)
@@ -202,13 +202,13 @@ func (c AliyunClound) GetAudioFileResult(taskId string, client *sdk.Client, call
 	}
 
 	if statusText != STATUS_SUCCESS {
-		return errors.New("录音文件识别失败 , (" + c.GetErrorStatusTextMessage(statusText) + ")")
+		return errors.New("Recording file recognition failed, (" + c.GetErrorStatusTextMessage(statusText) + ")")
 	}
 
 	return nil
 }
 
-//获取API常量
+//Get API constants
 func (c AliyunClound) GetApiVariable() (regionId string, domain string, apiVersion string, product string) {
 	if c.Region == 0 || c.Region == ALIYUN_CLOUND_REGION_CHA {
 		regionId = REGION_ID_REGION_CHA
@@ -224,21 +224,21 @@ func (c AliyunClound) GetApiVariable() (regionId string, domain string, apiVersi
 	return
 }
 
-//获取错误信息
+//get error message
 func (c AliyunClound) GetErrorStatusTextMessage(statusText string) string {
 	var code map[string]string = map[string]string{
-		"REQUEST_APPKEY_UNREGISTERED":    "阿里云智能语音项目未创建/无访问权限。请检查语音引擎Appkey是否填写错误；如果是海外地区，在软件创建语音引擎时，服务区域需要选择“海外”",
-		"USER_BIZDURATION_QUOTA_EXCEED":  "单日2小时识别免费额度超出限制",
-		"FILE_DOWNLOAD_FAILED":           "文件访问失败，请检查OSS存储空间访问权限。请将OSS存储空间设置为“公共读”",
-		"FILE_TOO_LARGE":                 "音频文件超出512MB",
-		"FILE_PARSE_FAILED":              "音频文件解析失败，请检查音频文件是否有损坏",
-		"UNSUPPORTED_SAMPLE_RATE":        "采样率不匹配",
-		"FILE_TRANS_TASK_EXPIRED":        "音频文件识别任务过期，请重试",
-		"REQUEST_INVALID_FILE_URL_VALUE": "音频文件访问失败，请检查OSS存储空间访问权限",
-		"FILE_404_NOT_FOUND":             "音频文件访问失败，请检查OSS存储空间访问权限",
-		"FILE_403_FORBIDDEN":             "音频文件访问失败，请检查OSS存储空间访问权限",
-		"FILE_SERVER_ERROR":              "音频文件访问失败，请检查请求的文件所在的服务是否可用",
-		"INTERNAL_ERROR":                 "识别内部通用错误，请稍候重试",
+		"REQUEST_APPKEY_UNREGISTERED":    "The Alibaba Cloud Smart Voice project has not been created/has no access rights. Please check whether the voice engine Appkey is incorrectly filled in; if it is an overseas region, when the software creates a voice engine, the service area needs to select "overseas"",
+		"USER_BIZDURATION_QUOTA_EXCEED":  "2 hours a day to identify the free quota exceeding the limit",
+		"FILE_DOWNLOAD_FAILED":           "The file access fails. Please check the OSS storage space access permission. Please set the OSS storage space to "Public Read"",
+		"FILE_TOO_LARGE":                 "Audio file exceeds 512MB",
+		"FILE_PARSE_FAILED":              "Audio file parsing failed, please check the audio file for corruption",
+		"UNSUPPORTED_SAMPLE_RATE":        "Sample rate mismatch",
+		"FILE_TRANS_TASK_EXPIRED":        "Audio file recognition task expired, please try again",
+		"REQUEST_INVALID_FILE_URL_VALUE": "Audio file access failed, please check the OSS storage space access permission",
+		"FILE_404_NOT_FOUND":             "Audio file access failed, please check the OSS storage space access permission",
+		"FILE_403_FORBIDDEN":             "Audio file access failed, please check the OSS storage space access permission",
+		"FILE_SERVER_ERROR":              "Audio file access failed, please check if the service where the requested file is located is available",
+		"INTERNAL_ERROR":                 "Internal generic error identified, please try again later",
 	}
 
 	if _, ok := code[statusText]; ok {
