@@ -14,7 +14,7 @@ import (
 	. "github.com/lxn/walk/declarative"
 )
 
-//应用版本号
+//APP version
 const APP_VERSION = "1.0.0"
 
 var AppRootDir string
@@ -31,19 +31,19 @@ var (
 )
 
 func init() {
-	//设置可同时执行的最大CPU数
+	//Set the maximum number of CPUs that can execute concurrently
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	//MY Window
 	mw = new(MyMainWindow)
 
 	AppRootDir = GetAppRootDir()
 	if AppRootDir == "" {
-		panic("应用根目录获取失败")
+		panic("Failed to get application root directory")
 	}
 
-	//校验ffmpeg环境
+	//Verify the ffmpeg environment
 	if e := ffmpeg.VailFfmpegLibrary(); e != nil {
-		//尝试自动引入 ffmpeg 环境
+		//Attempt to automatically import the ffmpeg environment
 		ffmpeg.VailTempFfmpegLibrary(AppRootDir)
 	}
 }
@@ -61,8 +61,8 @@ func main() {
 
 	var operateFrom = new(OperateFrom)
 
-	var startBtn *walk.PushButton          //生成字幕Btn
-	var startTranslateBtn *walk.PushButton //字幕翻译Btn
+	var startBtn *walk.PushButton          //The Button to start generating subtitlies 
+	var startTranslateBtn *walk.PushButton //The button to start translating subtitlies
 	var engineOptionsBox *walk.ComboBox
 	var translateEngineOptionsBox *walk.ComboBox
 	var dropFilesEdit *walk.TextEdit
@@ -70,44 +70,44 @@ func main() {
 	var appSetings = Setings.GetCacheAppSetingsData()
 	var appFilter = Filter.GetCacheAppFilterData()
 
-	//初始化展示配置
+	//Initialize display configuration
 	operateFrom.Init(appSetings)
 
-	//日志
+	//Log
 	var tasklog = NewTasklog(logText)
 
-	//字幕生成应用
+	//Subtitle generation application
 	var videosrt = NewApp(AppRootDir)
-	//注册日志事件
+	//Register log events
 	videosrt.SetLogHandler(func(s string, video string) {
 		baseName := tool.GetFileBaseName(video)
 		strs := strings.Join([]string{"【", baseName, "】", s}, "")
 		//追加日志
 		tasklog.AppendLogText(strs)
 	})
-	//字幕输出目录
+	//subtitle output directory
 	videosrt.SetSrtDir(appSetings.SrtFileDir)
-	//注册[字幕生成]多任务
+	//Register [Subtitle Generation] Multitasking
 	var multitask = NewVideoMultitask(appSetings.MaxConcurrency)
 
-	//字幕翻译应用
+	//Subtitle translation app
 	var srtTranslateApp = NewSrtTranslateApp(AppRootDir)
-	//注册日志回调事件
+	//Register for log callback events
 	srtTranslateApp.SetLogHandler(func(s string, file string) {
 		baseName := tool.GetFileBaseName(file)
 		strs := strings.Join([]string{"【", baseName, "】", s}, "")
-		//追加日志
+		//Append on log data
 		tasklog.AppendLogText(strs)
 	})
-	//文件输出目录
+	//file output directory
 	srtTranslateApp.SetSrtDir(appSetings.SrtFileDir)
-	//注册[字幕翻译]多任务
+	//Register [Subtitle Translation] Multitasking
 	var srtTranslateMultitask = NewTranslateMultitask(appSetings.MaxConcurrency)
 
 	if err := (MainWindow{
 		AssignTo: &mw.MainWindow,
 		Icon:     "./data/img/index.png",
-		Title:    "Lecture Video Assistant - 讲座字幕生成、字幕翻译、摘要生成小工具" + " - V" + APP_VERSION,
+		Title:    "Lecture Video Assistant - Lecture subtitle generation, subtitle translation, summary generation widget" + " - V" + APP_VERSION,
 		Font:     Font{Family: "微软雅黑", PointSize: 9},
 		ToolBar: ToolBar{
 			ButtonStyle: ToolBarButtonImageBeforeText,
