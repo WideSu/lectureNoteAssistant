@@ -1,5 +1,6 @@
 # lectureNoteAssistant
-A windows desktop application that can generate subtitles and translations for videos. You can use it for generating bilingual transcripts for videos.
+
+A windows desktop application which can generate subtitles, translations and summary for videos in 8 languages using API and SDK from Tencent, Alibaba, Baidu. You can use it for generating bilingual transcripts for videos and summarise the key points form the transcript using PageRank algorithm: LexRank.
 
 <img width="895" alt="image" src="https://user-images.githubusercontent.com/44923423/178111967-1675c55f-501e-4f60-8d07-fe6fc023c60b.png">
 
